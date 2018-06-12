@@ -13,6 +13,16 @@
     
 
     
+        <meta name="description" content="環境準備準備3台VM當作master和node圖為ubuntu1(master)、ubuntu2(node1)、ubuntu3(node2)
+
+
+
+安裝Docker更新ubuntu1apt-get update
+
+
+在三台VM上安裝docker.io
+1apt-get install –y dock"/>
+    
 
     <!--Author-->
     
@@ -25,6 +35,16 @@
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="環境準備準備3台VM當作master和node圖為ubuntu1(master)、ubuntu2(node1)、ubuntu3(node2)
+
+
+
+安裝Docker更新ubuntu1apt-get update
+
+
+在三台VM上安裝docker.io
+1apt-get install –y dock"/>
     
 
     <!--Open Graph Site Name-->
@@ -189,7 +209,57 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
+                <h1 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a><strong>環境準備</strong></h1><p>準備3台VM當作master和node<br><br>圖為ubuntu1(master)、ubuntu2(node1)、ubuntu3(node2)<br></p>
+<p><img src="https://i.imgur.com/q0sWwDe.jpg" alt="1"><br><br><br><br><img src="https://i.imgur.com/O8B8nrR.jpg" alt="2"><br><br><br><br><img src="https://i.imgur.com/cEdV5nx.jpg" alt="3"><br></p>
+<p><br><br><br><br><br></p>
+<hr>
+<h1 id="安裝Docker"><a href="#安裝Docker" class="headerlink" title="安裝Docker"></a><strong>安裝Docker</strong></h1><p>更新ubuntu<br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure></p>
+<p><br><br><img src="https://i.imgur.com/u2ijDfw.jpg" alt="4"><br><br><br><br><img src="https://i.imgur.com/yFCFjKy.jpg" alt="5"><br><br><br><br><img src="https://i.imgur.com/is0P51a.jpg" alt="6"><br><br><br></p>
+<p><br><br><br><br><br></p>
+<p>在三台VM上安裝docker.io<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install –y docker.io</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/HhE44iA.jpg" alt="7"><br></p>
+<p><img src="https://i.imgur.com/Xkg94Au.jpg" alt="8"><br></p>
+<p><img src="https://i.imgur.com/qKauoKn.jpg" alt="9"><br></p>
+<p><br><br><br><br><br></p>
+<hr>
+<h1 id="安裝Kubeadm-kubelet-kubectl"><a href="#安裝Kubeadm-kubelet-kubectl" class="headerlink" title="安裝Kubeadm, kubelet, kubectl"></a><strong>安裝Kubeadm, kubelet, kubectl</strong></h1><p>三台VM上皆執行以下指令<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get install -y apt-transport-https</span><br><span class="line"></span><br><span class="line">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - </span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list </span><br><span class="line">deb http://apt.kubernetes.io/ kubernetes-xenial main </span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">apt-get update</span><br><span class="line"></span><br><span class="line">apt-get install -y kubelet kubeadm kubectl</span><br><span class="line">```    </span><br><span class="line">&lt;br /&gt;</span><br><span class="line">&lt;br /&gt;</span><br><span class="line">&lt;br /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"># **關閉SWAP**</span><br><span class="line"></span><br><span class="line">在三台VM上執行關閉swap指令&lt;br /&gt;</span><br><span class="line"></span><br><span class="line">```linux</span><br><span class="line">swapoff –a </span><br><span class="line">```   </span><br><span class="line">&lt;br /&gt;</span><br><span class="line">&lt;br /&gt;</span><br><span class="line">&lt;br /&gt;</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"># **Initial master** </span><br><span class="line"></span><br><span class="line">```linux</span><br><span class="line">kubeadm init --pod-network-cidr=10.244.0.0/16</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/e4ASEzC.jpg" alt="10"></p>
+<p><br><br><br><br><br></p>
+<p>Initial之後，會出現initial成功訊息，並顯示下列指令，請在Master上執行<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p $HOME/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) $HOME/.kube/config</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/ukX3vSu.jpg" alt="11"></p>
+<p><br><br><br><br><br></p>
+<hr>
+<h1 id="Join-node"><a href="#Join-node" class="headerlink" title="Join node"></a><strong>Join node</strong></h1><p>Initial後出現的訊息中，會有一段key，請將這段指令複製起來，並貼在兩台node上執行<br></p>
+<p><img src="https://i.imgur.com/LTADDIC.jpg" alt="12"><br><br><br>執行畫面如下<br></p>
+<p><img src="https://i.imgur.com/rJf2AeS.jpg" alt="13"><br></p>
+<p><img src="https://i.imgur.com/31U57pC.jpg" alt="14"><br><br>這樣Cluster就完成囉!!<br></p>
+<p><br><br><br><br><br></p>
+<hr>
+<h1 id="安裝網路"><a href="#安裝網路" class="headerlink" title="安裝網路"></a><strong>安裝網路</strong></h1><p>在Master上輸入指令<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/t5WGp7M.jpg" alt="15"><br><br>查看DNS狀態，剛開始dns還是pending狀態，等過一段時間後就會是running狀態囉<br></p>
+<p><img src="https://i.imgur.com/8944I8r.jpg" alt="16"><br><br><br><img src="https://i.imgur.com/BaAKjjA.jpg" alt="17"><br><br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl taint nodes --all node-role.kubernetes.io/master</span><br></pre></td></tr></table></figure></p>
+<p>若要將master設定為可佈署的node，可以執行這行指令<br><br><img src="https://i.imgur.com/8sfeQFP.jpg" alt="18"><br><br>網路安裝完成<br><br><br><br><br><br><br></p>
+<hr>
+<h1 id="測試叢集"><a href="#測試叢集" class="headerlink" title="測試叢集"></a><strong>測試叢集</strong></h1><h4 id="Run-一個nginx看看"><a href="#Run-一個nginx看看" class="headerlink" title="Run 一個nginx看看~~ "></a>Run 一個nginx看看~~ <br></h4><p>建立nginx pod<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl run my-nginx --image=nginx --replicas=2 --port=80</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/qkEHftg.jpg" alt="19"><br><br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods</span><br></pre></td></tr></table></figure></p>
+<p>剛開始的狀態還是ContainerCreating<br><br><img src="https://i.imgur.com/01xRuam.jpg" alt="20"><br><br>等一段時間後，就都會是Running狀態囉<br><br><img src="https://i.imgur.com/FNVNSl2.jpg" alt="21"><br><br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get deployment</span><br></pre></td></tr></table></figure></p>
+<p>在get deployment上也可以看到nginx<br><br><img src="https://i.imgur.com/XUbsD0y.jpg" alt="22"><br><br><br><br><br>產生IP可供外連<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl expose deployment my-nginx --port=80 --type=NodePort</span><br></pre></td></tr></table></figure></p>
+<p><br><br><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/rcKbsp1.jpg" alt="23"><br><br>也可將後面的type改成LoadBalancer<br><br><br><br><br>用本機的IP &amp; 30223 Port連nginx頁面<br><br><img src="https://i.imgur.com/ssBdqXO.jpg" alt="24"></p>
+<p><img src="https://i.imgur.com/aE8sfob.jpg" alt="25"><br><br>佈署Nginx成功~~<br><br><br><br></p>
+<hr>
+<h1 id="指令補充"><a href="#指令補充" class="headerlink" title="指令補充"></a><strong>指令補充</strong></h1><p>kubeadm reset 重設所有網路設定</p>
+<p>kubectl cluster info   顯示叢集資訊 </p>
+<p>kubectl config view 查看kubeconfig的設定 </p>
+<p>kubectl logs <pod-name> 查看pod的log </pod-name></p>
+<p>kubectl exec 進入容器內下指令 </p>
+<p>kubectl top 查看CPU、記憶體</p>
+
 
                 
             </div>
