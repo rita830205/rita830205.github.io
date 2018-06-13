@@ -13,6 +13,17 @@
     
 
     
+        <meta name="description" content="K8S不負責任介紹Kubernetes (或簡稱K8s) 是一套高成熟度的開源軟體系統用於管理容器化的工作或服務，由 Google 於 2014 年對外發佈。K8S有以下幾個優點~
+
+可以跑在任何地方
+開源軟體系統
+確保持續提供服務
+設定副本與負載平衡
+滾動更新
+
+環境準備
+一個或多個 Master"/>
+    
 
     <!--Author-->
     
@@ -21,10 +32,21 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Rita&#39;s blog"/>
+        <meta property="og:title" content="K8S-Ingress"/>
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="K8S不負責任介紹Kubernetes (或簡稱K8s) 是一套高成熟度的開源軟體系統用於管理容器化的工作或服務，由 Google 於 2014 年對外發佈。K8S有以下幾個優點~
+
+可以跑在任何地方
+開源軟體系統
+確保持續提供服務
+設定副本與負載平衡
+滾動更新
+
+環境準備
+一個或多個 Master"/>
     
 
     <!--Open Graph Site Name-->
@@ -32,7 +54,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website"/>
+        <meta property="og:type" content="article"/>
     
 
     <!--Page Cover-->
@@ -51,7 +73,7 @@
 
     <!-- Title -->
     
-    <title>Archives: 2018/6 - Rita&#39;s blog</title>
+    <title>K8S-Ingress - Rita&#39;s blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -153,88 +175,91 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>2018/6</h1>
+                <div class="post-heading">
+                    <h1>K8S-Ingress</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-06-13
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2018/06/13/K8S-Ingress/">
-        <h1 class="post-title archive">
-            K8S-Ingress
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-06-13
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/06/12/K8S-環境建置/">
-        <h1 class="post-title archive">
-            K8S 環境建置
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-06-12
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/06/12/test/">
-        <h1 class="post-title archive">
-            test
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-06-12
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/06/11/hello-world/">
-        <h1 class="post-title archive">
-            Hello World
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-06-11
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="K8S不負責任介紹"><a href="#K8S不負責任介紹" class="headerlink" title="K8S不負責任介紹"></a><strong>K8S不負責任介紹</strong></h1><p>Kubernetes (或簡稱K8s) 是一套高成熟度的開源軟體系統<br>用於管理容器化的工作或服務，由 Google 於 2014 年對外發佈。<br><br>K8S有以下幾個優點~</p>
+<ul>
+<li>可以跑在任何地方</li>
+<li>開源軟體系統</li>
+<li>確保持續提供服務</li>
+<li>設定副本與負載平衡</li>
+<li>滾動更新</li>
 </ul>
+<h1 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a><strong>環境準備</strong></h1><ul>
+<li>一個或多個 Master</li>
+<li>一個或多個 Worker Nodes</li>
+<li>Kubeadm安裝K8S</li>
+<li>安裝Docker</li>
+</ul>
+<h1 id="不負責任K8S圖解"><a href="#不負責任K8S圖解" class="headerlink" title="不負責任K8S圖解"></a><strong>不負責任K8S圖解</strong></h1><p>這是一個最陽春的K8S集群，有一個Master和兩個Node<br><br><img src="/images/K8S Cluster.JPG" alt="k8scluster"><br><br><br>以下是K8S集群內元件的介紹<br></p>
+<ul>
+<li><strong>kubectl:</strong> 負責在機器上運行內容，屬於最基礎的組件。</li>
+<li><strong>API Server:</strong> 負責將東西放入etcd，並管裡身分驗證。 例如:誰可以將什麼東西放入etcd?</li>
+<li><strong>Controller Manager:</strong> 分配Pod在哪個node上運行，運行幾個，就像調度員一樣。</li>
+<li><strong>etcd:</strong> K8S的大腦，所有的狀態都儲存在etcd。</li>
+<li><strong>kubelet:</strong> 和master連接，告訴Docker去run container。</li>
+<li><strong>Proxy:</strong> 將請求轉發到正確的容器。</li>
+<li><strong>Scheduler:</strong> 依照你希望的配置份配Pod的位置，若沒設訂，Scheduler會幫你安排。</li>
+<li><strong>Pod:</strong> K8S元件最小單位，Node內可以有很多Pod，Pod內可有很多Container。<br></li>
+</ul>
+<p>當我們運在Master節點下kubectl create -f xxxx.yaml 指令，K8S就會開始動作，變成如下圖<br><br><img src="/images/K8S Cluster2.JPG" alt="k8scluster2"><br><br></p>
+<h1 id="K8S-Ingress-介紹"><a href="#K8S-Ingress-介紹" class="headerlink" title="K8S-Ingress 介紹"></a><strong>K8S-Ingress 介紹</strong></h1><p>當你想要將佈署在K8S上的服務對外開放時，需要在yaml檔裡設定Service的Type<br></p>
+<ul>
+<li><strong>ClusterIP:</strong> 預設的Service type，會給你的Service一組只有K8S集群內部可連的IP。</li>
+<li><strong>NodePort:</strong> 給你的Service一組預設範圍在30000-32767的port，讓Service可以透過NodeIP+port訪問。</li>
+<li><strong>LoadBalancer:</strong> 給你的Service一組外部IP，此type僅限於雲服務可用。 例如AWS、GCP</li>
+</ul>
+<p><br></p>
+<picture></picture>
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr />
