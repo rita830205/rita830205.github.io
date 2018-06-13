@@ -236,7 +236,7 @@
 <li><strong>Scheduler:</strong> 依照你希望的配置份配Pod的位置，若沒設訂，Scheduler會幫你安排。</li>
 <li><strong>Pod:</strong> K8S元件最小單位，Node內可以有很多Pod，Pod內可有很多Container。<br></li>
 </ul>
-<p>當我們運在Master節點下kubectl create -f xxxx.yaml 指令，K8S就會開始動作，變成如下圖<br><br><img src="/images/K8S Cluster2.JPG" alt="k8scluster2"><br><br></p>
+<p>當我們在Master節點下kubectl create -f xxxx.yaml 指令，K8S就會開始動作，變成如下圖<br><br><img src="/images/K8S Cluster2.JPG" alt="k8scluster2"><br><br></p>
 <h1 id="K8S-Ingress-介紹"><a href="#K8S-Ingress-介紹" class="headerlink" title="K8S-Ingress 介紹"></a><strong>K8S-Ingress 介紹</strong></h1><p>當你想要將佈署在K8S上的服務對外開放時，需要在yaml檔裡設定Service的Type<br></p>
 <ul>
 <li><strong>ClusterIP:</strong> 預設的Service type，會給你的Service一組只有K8S集群內部可連的IP。</li>
