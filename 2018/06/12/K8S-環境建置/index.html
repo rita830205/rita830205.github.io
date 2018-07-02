@@ -262,7 +262,13 @@
 <p><br><br><br></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.imgur.com/rcKbsp1.jpg" alt="23"><br><br>也可將後面的type改成LoadBalancer<br><br><br><br><br>用本機的IP &amp; 30223 Port連nginx頁面<br><br><img src="https://i.imgur.com/ssBdqXO.jpg" alt="24"></p>
-<p><img src="https://i.imgur.com/aE8sfob.jpg" alt="25"><br><br>佈署Nginx成功~~<br><br><br><br></p>
+<p><img src="https://i.imgur.com/aE8sfob.jpg" alt="25"><br><br>佈署Nginx成功~~<br><br></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><br></h2><h1 id="K8S倒回指定版本"><a href="#K8S倒回指定版本" class="headerlink" title="K8S倒回指定版本"></a><strong>K8S倒回指定版本</strong></h1><p>先將目前K8S環境reset<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm reset</span><br></pre></td></tr></table></figure></p>
+<p><br><br><img src="/images/k8s uninstall01.JPG" alt="k8suninstall01"><br><br>移除kubeadm、kubelet<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get remove kubeadm kubelet</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/k8s uninstall02.JPG" alt="k8suninstall02"><br><br><br><br>執行autoremove避免殘留<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt autoremove</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/k8s uninstall03.JPG" alt="k8suninstall03"><br><br><br><br>下載指定版本的kubeadm、kubelet<br><br>若想知道可下載的版本列表，請輸入以下指令<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-cache madison kubeadm</span><br></pre></td></tr></table></figure></p>
+<p>這邊以1.10.5-00為例<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install kubeadm=1.10.5-00 kubelet=1.10.5-00</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/k8s uninstall04.JPG" alt="k8suninstall04"><br><br><br><br>接下來就可以輸入master的join key到你的node裡面囉!<br><br><img src="/images/k8s uninstall05.JPG" alt="k8suninstall05"><br><br><br></p>
 <hr>
 <h1 id="指令補充"><a href="#指令補充" class="headerlink" title="指令補充"></a><strong>指令補充</strong></h1><p>kubeadm reset 重設所有網路設定</p>
 <p>kubectl cluster info   顯示叢集資訊 </p>
