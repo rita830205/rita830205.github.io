@@ -23,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Rita&#39;s blog"/>
+        <meta property="og:title" content="K8S-Dashboard"/>
     
 
     <!--Open Graph Description-->
@@ -36,7 +36,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website"/>
+        <meta property="og:type" content="article"/>
     
 
     <!--Page Cover-->
@@ -55,7 +55,7 @@
 
     <!-- Title -->
     
-    <title>Rita&#39;s blog</title>
+    <title>K8S-Dashboard - Rita&#39;s blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -175,7 +175,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Untitled</h1>
+                    <h1>K8S-Dashboard</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
@@ -197,13 +197,45 @@
 
             <!-- Tags and categories -->
            
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/K8S/">#K8S</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/學習筆記/">學習筆記</a>
+
+                    
+                </div>
+            
 
             <!-- Gallery -->
             
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
+                <h1 id="建置K8S-Dashboard"><a href="#建置K8S-Dashboard" class="headerlink" title="建置K8S-Dashboard"></a><strong>建置K8S-Dashboard</strong></h1><h2 id="Kubernetes有官方的Dashboard可以查看資訊，來自己建一個試試看吧"><a href="#Kubernetes有官方的Dashboard可以查看資訊，來自己建一個試試看吧" class="headerlink" title="Kubernetes有官方的Dashboard可以查看資訊，來自己建一個試試看吧~"></a>Kubernetes有官方的Dashboard可以查看資訊，來自己建一個試試看吧~<br></h2><p>佈署官方文件kubernetes-dashboard.yaml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/dashboard02.JPG" alt="dashboard02"><br><br>生成client-certificate-data<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &apos;client-certificate-data&apos; ~/.kube/config | head -n 1 | awk &apos;&#123;print $2&#125;&apos; | base64 -d &gt;&gt; kubecfg.crt</span><br></pre></td></tr></table></figure></p>
+<p>生成client-key-data<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &apos;client-key-data&apos; ~/.kube/config | head -n 1 | awk &apos;&#123;print $2&#125;&apos; | base64 -d &gt;&gt; kubecfg.key</span><br></pre></td></tr></table></figure></p>
+<p>生成p12<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -export -clcerts -inkey kubecfg.key -in kubecfg.crt -out kubecfg.p12 -name &quot;kubernetes-client&quot;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/dashboard03.JPG" alt="dashboard03"><br>密碼隨意，可打可不打<br><br>查看檔案，並將kubecfg.p12複製到本機<br><img src="/images/dashboard04.JPG" alt="dashboard04"><br><br>開啟google瀏覽器，至設定→管理憑證→將剛剛的kubecfg.p12匯入<br><img src="/images/dashboard09.JPG" alt="dashboard09"><br></p>
+<p>創一個kubernetes-dashboard-admin.yaml<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    k8s-app:</span> <span class="string">kubernetes-dashboard</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">kubernetes-dashboard-admin</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">kube-system</span></span><br><span class="line">  </span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRoleBinding</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">kubernetes-dashboard-admin</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    k8s-app:</span> <span class="string">kubernetes-dashboard</span></span><br><span class="line"><span class="attr">roleRef:</span></span><br><span class="line"><span class="attr">  apiGroup:</span> <span class="string">rbac.authorization.k8s.io</span></span><br><span class="line"><span class="attr">  kind:</span> <span class="string">ClusterRole</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">cluster-admin</span></span><br><span class="line"><span class="attr">subjects:</span></span><br><span class="line"><span class="attr">- kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">kubernetes-dashboard-admin</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">kube-system</span></span><br></pre></td></tr></table></figure></p>
+<p>佈署kubernetes-dashboard-admin.yaml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f kubernetes-dashboard-admin.yaml</span><br></pre></td></tr></table></figure></p>
+<p>取得key完整名稱<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n kube-system get secret | grep kubernetes-dashboard-admin</span><br></pre></td></tr></table></figure></p>
+<p>將紅框內key的名稱複製<br><img src="/images/dashboard05.JPG" alt="dashboard05"><br></p>
+<p>describe剛剛複製的key名稱，取得key完整內容，並將整段key複製起來<br><img src="/images/dashboard06.JPG" alt="dashboard06"><br></p>
+<p>新開一個無痕視窗訪問網址<br><br><a href="https://MasterIP:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default" target="_blank" rel="noopener">https://MasterIP:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default</a><br><br>請打上自己的MasterIP<br></p>
+<p>看到登入畫面，選擇用token登入，將剛剛複製起來的整串key貼上，並且登入<br><img src="/images/dashboard08.JPG" alt="dashboard08"><br></p>
+<p>薑薑<del>可以看到Dashboard拉</del>~<br><img src="/images/dashboard07.JPG" alt="dashboard07"><br></p>
+
 
                 
             </div>
