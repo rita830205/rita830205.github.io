@@ -228,7 +228,12 @@
 <h3 id="驗證安裝是否成功"><a href="#驗證安裝是否成功" class="headerlink" title="驗證安裝是否成功"></a>驗證安裝是否成功</h3><p>確保部署了以下Kubernetes服務，用指令查看service<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get svc -n istio-system</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/istio01.JPG" alt="istio01"><br><br><br>用指令查看pod<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -n istio-system</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/istio02.JPG" alt="istio02"><br><br></p>
-<h1 id="Istio-Sample-bookinfo"><a href="#Istio-Sample-bookinfo" class="headerlink" title="Istio Sample - bookinfo"></a><strong>Istio Sample - bookinfo</strong></h1>
+<h1 id="Istio-Sample-bookinfo"><a href="#Istio-Sample-bookinfo" class="headerlink" title="Istio Sample - bookinfo"></a><strong>Istio Sample - bookinfo</strong></h1><h3 id="sidecar-injection"><a href="#sidecar-injection" class="headerlink" title="sidecar injection"></a>sidecar injection</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f &lt;(istioctl kube-inject -f samples/bookinfo/kube/bookinfo.yaml)</span><br></pre></td></tr></table></figure>
+<h3 id="配置bookinfo-gateway"><a href="#配置bookinfo-gateway" class="headerlink" title="配置bookinfo-gateway"></a>配置bookinfo-gateway</h3><p>與ingress功能類似，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">istioctl create -f samples/bookinfo/routing/bookinfo-gateway.yaml</span><br></pre></td></tr></table></figure></p>
+<h3 id="查看是否佈署成功"><a href="#查看是否佈署成功" class="headerlink" title="查看是否佈署成功"></a>查看是否佈署成功</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services</span><br></pre></td></tr></table></figure>
+<p><img src="/images/istio03.JPG" alt="istio03"><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/istio04.JPG" alt="istio04"><br><br></p>
+
 
                 
             </div>
