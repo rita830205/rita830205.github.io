@@ -238,6 +238,7 @@
 <p><img src="/images/istio05.JPG" alt="istio05"><br><br><br>可以看到ingressgateway的NodePort為31380<br>在瀏覽器打上masterIP:31380/productpage<br><img src="/images/istio06.JPG" alt="istio06"><br><br></p>
 <h3 id="LoadBalance"><a href="#LoadBalance" class="headerlink" title="LoadBalance"></a>LoadBalance</h3><p>可以試著重複刷新productpage頁面，會發現有不同的版本(無星、紅星、黑星)，這是因為當時佈署productpage時一次佈署了3個不同的reviews版本，所以在reviews區域會看到不同的顯示。<br><img src="/images/istio07.JPG" alt="istio07"><br><br></p>
 <h1 id="Istio-插件"><a href="#Istio-插件" class="headerlink" title="Istio 插件"></a><strong>Istio 插件</strong></h1><p>在Istio0.8.0版本中，佈署istio的yaml檔內直接將grafana、prometheus等服務一倂佈署，我們可以為這些插件設定ingress，方便訪問頁面。</p>
+<h4 id="需先佈署ingress-controller"><a href="#需先佈署ingress-controller" class="headerlink" title="需先佈署ingress controller"></a><strong>需先佈署ingress controller</strong></h4><p>請參閱 <a href="/2018/06/13/K8S-Ingress/" title="K8S-Ingress">K8S-Ingress</a></p>
 
 
                 
