@@ -234,6 +234,8 @@
 <h3 id="查看是否佈署成功"><a href="#查看是否佈署成功" class="headerlink" title="查看是否佈署成功"></a>查看是否佈署成功</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services</span><br></pre></td></tr></table></figure>
 <p><img src="/images/istio03.JPG" alt="istio03"><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/istio04.JPG" alt="istio04"><br><br></p>
+<h3 id="Productpage"><a href="#Productpage" class="headerlink" title="Productpage"></a>Productpage</h3><p>因前面有設定bookinfo的gateway，所以只需要連istio-ingressgateway的IP:NodePort/productpage即可連到Bookinfo Sample<br><br>查看svc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get svc -n istio-system</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/istio05.JPG" alt="istio05"><br><br><br>可以看到ingressgateway的NodePort為31380<br>在瀏覽器打上masterIP:31380/productpage<br><img src="/images/istio06.JPG" alt="istio06"><br><br></p>
 
 
                 
