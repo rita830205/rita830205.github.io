@@ -243,6 +243,11 @@
 <p>佈署istio-ingress<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create -f istio-ingress.yaml -n istio-system</span><br></pre></td></tr></table></figure></p>
 <p>查看ingress<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe ing istio-ingress -n istio-system</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/istio08.JPG" alt="istio08"><br><br><br>剛剛在yaml檔裡設的規則，可以很清楚的看到。</p>
+<h3 id="用Domain訪問"><a href="#用Domain訪問" class="headerlink" title="用Domain訪問"></a>用Domain訪問</h3><p>接下來就可以用剛剛設到的domain訪問頁面囉</p>
+<h5 id="grafana"><a href="#grafana" class="headerlink" title="grafana"></a>grafana</h5><p><img src="/images/istio09.JPG" alt="istio09"><br><br></p>
+<h5 id="prometheus"><a href="#prometheus" class="headerlink" title="prometheus"></a>prometheus</h5><p><img src="/images/istio10.JPG" alt="istio10"><br><br></p>
+<h5 id="servicegraph"><a href="#servicegraph" class="headerlink" title="servicegraph"></a>servicegraph</h5><p>訪問servicegraph有不同的端點，呈現不同的服務圖。</p>
+<p>/dotviz<br><br><img src="/images/istio11.JPG" alt="istio11"><br><br><br>/force/forcegraph.html<br><br><img src="/images/istio12.JPG" alt="istio12"><br><br></p>
 
 
                 
