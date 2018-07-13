@@ -237,7 +237,7 @@
 <h3 id="Productpage"><a href="#Productpage" class="headerlink" title="Productpage"></a>Productpage</h3><p>因前面有設定bookinfo的gateway，所以只需要連istio-ingressgateway的IP:NodePort/productpage即可連到Bookinfo Sample<br><br>查看svc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get svc -n istio-system</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/istio05.JPG" alt="istio05"><br><br><br>可以看到ingressgateway的NodePort為31380<br>在瀏覽器打上masterIP:31380/productpage<br><img src="/images/istio06.JPG" alt="istio06"><br><br></p>
 <h3 id="LoadBalance"><a href="#LoadBalance" class="headerlink" title="LoadBalance"></a>LoadBalance</h3><p>可以試著重複刷新productpage頁面，會發現有不同的版本(無星、紅星、黑星)，這是因為當時佈署productpage時一次佈署了3個不同的reviews版本，所以在reviews區域會看到不同的顯示。<br><img src="/images/istio07.JPG" alt="istio07"><br><br></p>
-<h1 id="Istio-插件"><a href="#Istio-插件" class="headerlink" title="Istio 插件"></a><strong>Istio 插件</strong></h1><p>在Istio0.8.0版本中，佈署istio的yaml檔內直接將grafana、prometheus等服務一倂佈署，</p>
+<h1 id="Istio-插件"><a href="#Istio-插件" class="headerlink" title="Istio 插件"></a><strong>Istio 插件</strong></h1><p>在Istio0.8.0版本中，佈署istio的yaml檔內直接將grafana、prometheus等服務一倂佈署，我們可以為這些插件設定ingress，方便訪問頁面。</p>
 
 
                 
